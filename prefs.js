@@ -6,7 +6,7 @@ const Local = imports.misc.extensionUtils.getCurrentExtension();
 const Convenience = Local.imports.convenience;
 const Settings = Local.imports.settings;
 
-const guuid = 'SystemMenu'
+const guuid = 'SearchMenu'
 const Gettext = imports.gettext.domain(guuid);
 const _ = Gettext.gettext;
 
@@ -83,16 +83,11 @@ function widget_initliaze()
     position_label = new Gtk.Label({label: _("Position"), xalign: 0});
     position_input = Gtk.HScale.new_with_range(0, 25, 1);
 
-    // software center
+    // Application Name
     software_token_box = new Gtk.Box({orientation: Gtk.Orientation.HORIZONTAL, margin_top: 15});
-    software_token_label = new Gtk.Label({label: _("Software center"), xalign: 0, margin_right: 30 });
-    software_token_input = new Gtk.Entry({ hexpand: true, text: "" });
+    software_token_label = new Gtk.Label({label: _("Application Name (add .desktop to the end of the app name)"), xalign: 0, margin_right: 30 });
+    software_token_input = new Gtk.Entry({ hexpand: true, text:"" });
 
-    // remove
-    remove_token_box = new Gtk.Box({orientation: Gtk.Orientation.HORIZONTAL, margin_top: 15});
-    remove_token_label = new Gtk.Label({label: _("Clean user status menu"), xalign: 0, margin_right: 30 });
-    remove_token_input = new Gtk.Switch({active: remove});
-    remove_token_input.connect ('notify::active', Lang.bind (this, onSwitchChangedRemove));
 
     // save settings box
     save_settings_box = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL });
@@ -114,9 +109,7 @@ function widget_packaging()
     software_token_box.pack_start(software_token_label, false, false, 15);
     software_token_box.pack_start(software_token_input, true, true, 15);
 
-    // remove
-    remove_token_box.pack_start(remove_token_label, false, false, 15);
-    remove_token_box.pack_start(remove_token_input, true, true, 15);
+
 
     // save settings
     save_settings_box.pack_start(save_settings_spacer, true, true, 15);
@@ -125,7 +118,7 @@ function widget_packaging()
     main_frame.add(area_token_box);
     main_frame.add(position_box)
     main_frame.add(software_token_box);
-    main_frame.add(remove_token_box);
+
     main_frame.add(save_settings_box);
 }
 
@@ -147,7 +140,7 @@ function save_settings_button_callback()
     settings_data.area = area;
     settings_data.position = position_input.get_value();
     settings_data.software = software_token_input.get_text();
-    settings_data.remove = remove;
+
 
     settings.set_string("settings-json", JSON.stringify(settings_data));
 }
@@ -170,8 +163,7 @@ function widget_init_values()
     // set the saved software token value
     software_token_input.set_text(settings_data.software);
 
-    // set the saved remove token value
-   remove_token_input.set_active(settings_data.remove);
+
 }
 
 function buildPrefsWidget()

@@ -1,5 +1,5 @@
 /*
- This file has been developed by Albert Palacios.
+ This file has been developed by Tristan Jones.
  This software may be used and distributed
  according to the terms of the GNU General Public License version 2.
 
@@ -26,7 +26,7 @@ const Panel = imports.ui.panel;
 const Tweener = imports.ui.tweener;
 const GnomeSession = imports.misc.gnomeSession;
 
-const guuid = 'SystemMenu'
+const guuid = 'SearchMenu'
 const Gettext = imports.gettext.domain(guuid);
 const _ = Gettext.gettext;
 const ExtensionUtils = imports.misc.extensionUtils;
@@ -65,8 +65,10 @@ _onEvent: function(actor, event) {
         try {
             //let context = global.create_app_launch_context(event.get_time(), -1);
           //  Gio.AppInfo.launch_default_for_uri(this.file.get_uri(), context);
+          let action = settings.software;
+
           let def = Shell.AppSystem.get_default();
-          let app = def.lookup_app('synapse.desktop');
+          let app = def.lookup_app(action);
           app.activate();
 
 

@@ -6,7 +6,7 @@ const Local = imports.misc.extensionUtils.getCurrentExtension();
 const Convenience = Local.imports.convenience;
 const Settings = Local.imports.settings;
 
-const guuid = 'SearchMenu'
+const guuid = 'Search'
 const Gettext = imports.gettext.domain(guuid);
 const _ = Gettext.gettext;
 

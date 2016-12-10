@@ -46,8 +46,8 @@ const extensionObject = new Lang.Class({
 
 
 
-		let icon = new St.Icon({ icon_name: 'apple-icon',
-					 style_class: 'apple-icon' });
+		let icon = new St.Icon({ icon_name: 'magnify',
+					 style_class: 'magnify' });
 		let label = new St.Label({ text: "" });
     this.parent(0.0, label.text);
 		this.actor.add_child(icon);
